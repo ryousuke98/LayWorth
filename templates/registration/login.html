@@ -1,0 +1,57 @@
+<!-- templates/registration/login.html -->
+{% extends 'registration/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<script>
+  var
+    // コマンドのキーコード
+    command = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65],
+
+    length = command.length,
+    index = 0;
+
+  document.addEventListener('keydown', function (ev) {
+    if (ev.keyCode === command[index]) {
+      index++;
+
+      if (index >= length) {
+        alert("Hello!");
+
+        // 全てのコマンドを入力したら何かする
+      }
+    } else {
+      // コマンド入力を間違えたらリセット
+      index = 0;
+    }
+  });
+)();
+  </script>
+
+<p class="fontsize1000">LayWorth</p>
+<div class="form-wrapper">
+<link rel="stylesheet" href="{% static 'Signin.css' %}">
+<h1>Login</h1>
+
+<form method="post">
+        <div class="form-item">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="button-panel">
+        <input type="submit" class="button" title="ログイン" value="ログイン"></input>
+            </div>
+        </div>
+</form>
+
+<div class="form-footer">
+    <p><a href="../signup/">新しいアカウントを作る</a></p>
+    <form method="post">
+        <p><a href="../password_reset/">パスワードを忘れた</a></p>
+    </form>
+
+</div>
+</div>
+{% endblock %}
